@@ -1,0 +1,47 @@
+<template name="events">
+    {{> eventlist}}
+</template>
+
+<template name="eventlist">
+    <table class="ui selectable celled striped table">
+        <thead>
+        <tr>
+            <th colspan="7">
+                Events
+                <a href="{{pathFor route='dashboard.events.add'}}" class="circular ui icon button mini">
+                    <i class="icon plus"></i>
+                </a>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        {{#each event in events}}
+            {{> eventlistitem event}}
+        {{/each}}
+        </tbody>
+    </table>
+</template>
+
+<template name="eventlistitem">
+    <tr>
+        <td class="collapsing">
+            1
+        </td>
+        <td>2</td>
+        <td>
+            3
+        </td>
+        <td>
+            4
+        </td>
+        <td>
+            5
+        </td>
+        <td>
+            6
+        </td>
+        <td class="right aligned collapsing">
+            7
+        </td>
+    </tr>
+</template>

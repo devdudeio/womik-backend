@@ -1,0 +1,23 @@
+<template name="DashboardLayout">
+    <div class="ui page dimmer">
+        <div class="content">
+            <div class="center">
+                <h2 class="ui inverted icon header">
+                    <div class="ui active inline loader"></div>
+                    <div class="header">{{dimmerHeader}}</div>
+                    <div class="sub header">{{dimmerMessage}}</div>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="pusher">
+        <div class="ui grid">
+            <div class="one wide column"></div>
+            <div class="fourteen wide column">
+                {{> yield}}
+            </div>
+            <div class="one wide column"></div>
+        </div>
+    </div>
+</template>

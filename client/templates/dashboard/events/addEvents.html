@@ -1,0 +1,34 @@
+<template name="addEvent">
+    <div class="ui form"><br>
+        <h1 class="ui header centered">Neues Event hinzufügen</h1><br>
+        <h3 class="ui header">Datum & Uhrzeit</h3>
+        <div class="fields">
+            <div class="field">
+                <label>Beginn
+                </label>
+                <input id="begin" type="text" placeholder="27.03.2016 12:00">
+            </div>
+            <div class="field">
+                <label>Ende</label>
+                <input id="end" type="text" placeholder="27.03.2016 19:00">
+            </div>
+            <div class="field">
+                <p>{{duration}}</p>
+                <p>{{startsIn}}</p>
+            </div>
+        </div>
+        <h3 class="ui header">Event</h3>
+        <div class="field">
+            <label>Überschrift
+            </label>
+            <input id="title" type="text" placeholder="Überschrift">
+        </div>
+        <div class="field">
+            <label>Artikel</label>
+            <textarea id="article"> </textarea>
+        </div>
+
+        <button class="ui button js-save">save</button>
+        ... Heiko Änderungen?
+    </div>
+</template>
