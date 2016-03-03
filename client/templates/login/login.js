@@ -40,7 +40,7 @@ Template.login.events({
                     Meteor.call("console", "login attempt failed for: " + emailOrUsername + " --> " + err);
                 } else {
                     Meteor.call("console", "login succeed for: " + emailOrUsername);
-                    Router.go("dashboard.index");
+                    FlowRouter.go('events');
                 }
             });
         }

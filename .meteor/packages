@@ -26,7 +26,6 @@ cfs:standard-packages                   # needed for gridfs
 
 standard-minifier-css
 standard-minifier-js
-
-
 kadira:flow-router
 kadira:blaze-layout
+arillo:flow-router-helpers
