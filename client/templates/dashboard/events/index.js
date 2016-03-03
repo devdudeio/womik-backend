@@ -5,6 +5,6 @@ Template.eventlist.helpers({
 });
 
 Template.eventlist.onCreated(function () {
-    const instance = this;
-    instance.subscribe('events');
+    Meteor.subscribe('events');
+    Meteor.subscribe('images');
 });

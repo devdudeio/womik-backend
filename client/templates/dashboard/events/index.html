@@ -8,7 +8,7 @@
         <tr>
             <th colspan="7">
                 Events
-                <a href="{{pathFor route='index'}}" class="circular ui icon button mini">
+                <a href="{{pathFor route='addEvent'}}" class="circular ui icon button mini">
                     <i class="icon plus"></i>
                 </a>
             </th>
@@ -24,24 +24,18 @@
 
 <template name="eventlistitem">
     <tr>
-        <td class="collapsing">
-            1
-        </td>
-        <td>2</td>
         <td>
-            3
+            {{title}}
         </td>
+        <td>{{author}}</td>
         <td>
-            4
+            {{begin._d}}
         </td>
         <td>
-            5
+            {{hidden}}
         </td>
         <td>
-            6
-        </td>
-        <td class="right aligned collapsing">
-            7
+            {{vendor}}
         </td>
     </tr>
 </template>
