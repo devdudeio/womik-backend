@@ -75,8 +75,9 @@ Meteor.methods({
             }, function (err) {
                 if (err) {
                     //er
+                    console.log("Fehler beim adden")
                 } else {
-                    //nice
+                    console.log("alles ok")
                 }
             })
         }

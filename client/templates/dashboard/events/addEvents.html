@@ -1,7 +1,10 @@
 <template name="addEvent">
     <div class="ui form"><br>
+
         <h1 class="ui header centered">Neues Event hinzufügen</h1><br>
+
         <h3 class="ui header">Datum & Uhrzeit</h3>
+
         <div class="fields">
             <div class="field">
                 <label>Beginn
@@ -14,12 +17,14 @@
             </div>
             <div class="field">
                 <p>{{duration}}</p>
+
                 <p>{{startsIn}}</p>
             </div>
         </div>
         <h3 class="ui header">Event</h3>
         <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet" target="_blank">[markdown
             support]</a>
+
         <div class="field">
             <label>Überschrift
             </label>
@@ -40,12 +45,19 @@
             {{#with image}}
                 <img src="{{this.url store='thumbs'}}">
             {{else}}
-nope
+                nope
             {{/with}}
         </div>
-        <div class="field">
-            <label>Artikel</label>
-            <textarea id="article" placeholder="Text des Artikels"></textarea>
+        <div class="two fields">
+            <div class="field">
+                <label>Artikel</label>
+                <textarea id="article" placeholder="Text des Artikels"></textarea>
+            </div>
+            <div class="field">
+                <label>Artikel Vorschau</label>
+
+                <div>{{#markdown}}{{article}}{{/markdown}}</div>
+            </div>
         </div>
         <div class="field">
             <label>Eintritt/Preis</label>

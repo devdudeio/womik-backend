@@ -115,7 +115,13 @@ Template.addEvent.events({
             insider_name,
             license,
             author,
-            image_name)
+            image_name, function(error){
+                if(!err){
+                    //FlowRouter.go('eventlist');
+                }else{
+                    alert("Fehler");
+                }
+            })
     }
 });
 
@@ -130,6 +136,9 @@ Template.addEvent.helpers({
         if (Session.get("image_id") != null) {
             return Images.findOne(Session.get("image_id"));
         }
+    },
+    article: function(){
+        return Session.get("article");
     }
 });
 

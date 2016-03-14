@@ -32,7 +32,11 @@
             {{begin._d}}
         </td>
         <td>
-            {{hidden}}
+            {{#if hidden}}
+                <div class="ui button small green" data-toggle="{{_id}}">live schalten</div>
+            {{else}}
+                <div class="ui button small pink" data-toggle="{{_id}}">offline schalten</div>
+            {{/if}}
         </td>
         <td>
             {{vendor}}
