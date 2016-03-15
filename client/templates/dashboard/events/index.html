@@ -23,23 +23,69 @@
 </template>
 
 <template name="eventlistitem">
-    <tr>
-        <td>
-            {{title}}
-        </td>
-        <td>{{author}}</td>
-        <td>
-            {{begin._d}}
-        </td>
-        <td>
-            {{#if hidden}}
-                <div class="ui button small green" data-toggle="{{_id}}">live schalten</div>
-            {{else}}
-                <div class="ui button small pink" data-toggle="{{_id}}">offline schalten</div>
-            {{/if}}
-        </td>
-        <td>
-            {{vendor}}
-        </td>
-    </tr>
+    {{#if isDisplayedInApp begin}}
+        <tr style="background-color: rgba(51, 255, 77, 0.05);">
+            <td>
+                {{title}}
+            </td>
+            <td>{{author}}</td>
+            <td>
+                {{formatDate begin}} ({{timeAgo begin}})
+            </td>
+            <td>
+                {{#if hidden}}
+                    <div class="ui button small green" data-toggle="{{_id}}">live schalten</div>
+                {{else}}
+                    <div class="ui button small pink" data-toggle="{{_id}}">offline schalten</div>
+                {{/if}}
+            </td>
+            <td>
+                {{vendor}}
+            </td>
+        </tr>
+    {{else}}
+        {{#if isOutdatedEvent begin}}
+            <tr style="background-color: rgba(255, 22, 8, 0.06);">
+                <td>
+                    {{title}}
+                </td>
+                <td>{{author}}</td>
+                <td>
+                    {{formatDate begin}} ({{timeAgo begin}})
+                </td>
+                <td>
+                    {{#if hidden}}
+                        <div class="ui button small green" data-toggle="{{_id}}">live schalten</div>
+                    {{else}}
+                        <div class="ui button small pink" data-toggle="{{_id}}">offline schalten</div>
+                    {{/if}}
+                </td>
+                <td>
+                    {{vendor}}
+                </td>
+            </tr>
+        {{else}}
+            <tr style="background-color: rgba(255, 210, 42, 0.29);">
+                <td>
+                    {{title}}
+                </td>
+                <td>{{author}}</td>
+                <td>
+                    {{formatDate begin}} ({{timeAgo begin}})
+                </td>
+                <td>
+                    {{#if hidden}}
+                        <div class="ui button small green" data-toggle="{{_id}}">live schalten</div>
+                    {{else}}
+                        <div class="ui button small pink" data-toggle="{{_id}}">offline schalten</div>
+                    {{/if}}
+                </td>
+                <td>
+                    {{vendor}}
+                </td>
+            </tr>
+        {{/if}}
+
+    {{/if}}
+
 </template>

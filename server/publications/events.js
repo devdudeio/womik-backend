@@ -1,6 +1,6 @@
 Meteor.publish('events', function(){
    if(this.userId){
-       return Events.find({}, {sort: {'begin._d': -1}});
+       return Events.find();
    }else{
        return this.ready();
    }

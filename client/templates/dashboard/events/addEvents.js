@@ -1,24 +1,16 @@
 Template.addEvent.events({
     'input #begin': function () {
-        const begin = moment($('#begin').val(), "DD.MM.YYYY HH:mm");
+        const _begin = $('#begin').val();
+        const begin = moment(_begin, "DD.MM.YYYY HH:mm");
         Session.set("startsIn", moment(begin).fromNow());
-        Session.set("begin", $('#begin').val());
+        Session.set("begin", _begin);
     },
     'input #end': function () {
-        const end = moment($('#end').val(), "DD-MM-YYYY HH:mm");
-        Session.set("end", $('#end').val());
-
+        const _end = $('#end').val();
+        const end = moment(_end, "DD-MM-YYYY HH:mm");
+        Session.set("end", _end);
         const begin = moment($('#begin').val(), "DD-MM-YYYY HH:mm");
         Session.set("duration", moment.duration(end.diff(begin, 'hours'), "hours").humanize());
-    },
-    'input #title': function () {
-        Session.set("title", $('#title').val());
-    },
-    'input #vendor': function () {
-        Session.set("vendor", $('#vendor').val());
-    },
-    'input #type': function () {
-        Session.set("type", $('#type').val());
     },
     'change #image_upload': function () {
         console.log("fired");
@@ -34,67 +26,46 @@ Template.addEvent.events({
             });
         });
         console.log("fired2");
+    },
+    'input #article': function(){
+      const string = $('#article').val();
+        Session.set('article', string);
+    },
+
+    'input #notice': function(){
+        const string = $('#notice').val();
+        Session.set('notice', string);
 
     },
-    'input #article': function () {
-        Session.set("article", $('#article').val());
-    },
-    'input #fee': function () {
-        Session.set("fee", $('#fee').val());
-    },
-    'input #age': function () {
-        Session.set("age", $('#age').val());
-    },
-    'input #notice': function () {
-        Session.set("notice", $('#notice').val());
-    },
-    'input #optional': function () {
-        Session.set("optional", $('#optional').val());
-    },
-    'input #vendor_name': function () {
-        Session.set("vendor_name", $('#vendor_name').val());
-    },
-    'input #vendor_street': function () {
-        Session.set("vendor_street", $('#vendor_street').val());
-    },
-    'input #vendor_city': function () {
-        Session.set("vendor_city", $('#vendor_city').val());
-    },
-    'input #more_information': function () {
-        Session.set("more_information", $('#more_information').val());
-    },
-    'input #insider_name': function () {
-        Session.set("insider_name", $('#insider_name').val());
-    },
-    'input #license': function () {
-        Session.set("license", $('#license').val());
-    },
-    'input #author': function () {
-        Session.set("author", $('#author').val());
-    },
-    'input #image_name': function () {
-        Session.set("image_name", $('#image_name').val());
+
+    'input #more_information': function(){
+        const string = $('#more_information').val();
+        Session.set('more_information', string);
+
     },
     'click .js-save': function () {
-        const begin = Session.get("begin");
-        const end = Session.get("end");
-        const title = Session.get("title");
-        const vendor = Session.get("vendor");
-        const type = Session.get("type");
+
+        const begin = $('#').val();
+        const end = $('#').val();
+        const title = $('#').val();
+        const vendor = $('#').val();
+        const type = $('#').val();
         const image_id = Session.get("image_id");
-        const article = Session.get("article");
-        const fee = Session.get("fee");
-        const age = Session.get("age");
-        const notice = Session.get("notice");
-        const optional = Session.get("optional");
-        const vendor_name = Session.get("vendor_name");
-        const vendor_street = Session.get("vendor_street");
-        const vendor_city = Session.get("vendor_city");
-        const more_information = Session.get("more_information");
-        const insider_name = Session.get("insider_name");
-        const license = Session.get("license");
-        const author = Session.get("author");
-        const image_name = Session.get("image_name");
+        const article = $('#').val();
+        const fee = $('#').val();
+        const age = $('#').val();
+        const notice = $('#').val();
+        const optional = $('#').val();
+        const vendor_name = $('#').val();
+        const vendor_street = $('#').val();
+        const vendor_streetnr = $('#').val();
+        const vendor_zipcode = $('#').val();
+        const vendor_city = $('#').val();
+        const more_information = $('#').val();
+        const insider_name = $('#').val();
+        const license = $('#').val();
+        const author = $('#').val();
+        const image_name = $('#').val();
 
         Meteor.call('addEvent',
             begin,
@@ -115,13 +86,8 @@ Template.addEvent.events({
             insider_name,
             license,
             author,
-            image_name, function(error){
-                if(!err){
-                    //FlowRouter.go('eventlist');
-                }else{
-                    alert("Fehler");
-                }
-            })
+            image_name);
+        FlowRouter.go('events');
     }
 });
 
@@ -137,40 +103,23 @@ Template.addEvent.helpers({
             return Images.findOne(Session.get("image_id"));
         }
     },
-    article: function(){
+    article: function () {
         return Session.get("article");
+    },
+    notice: function () {
+        return Session.get("notice");
+    },
+    more_information: function () {
+        return Session.get("more_information");
     }
 });
 
 
 Template.addEvent.onCreated(function () {
-    //Sessionvars
-    Session.setDefault("begin", "");
-    Session.setDefault("end", "");
-    Session.setDefault("title", "");
-    Session.setDefault("vendor", "");
-    Session.setDefault("type", "");
-    Session.setDefault("image_id", "");
-    Session.setDefault("article", "");
-    Session.setDefault("fee", "");
-    Session.setDefault("age", "");
-    Session.setDefault("notice", "");
-    Session.setDefault("optional", "");
-    Session.setDefault("vendor_name", "");
-    Session.setDefault("vendor_street", "");
-    Session.setDefault("vendor_city", "");
-    Session.setDefault("more_information", "");
-    Session.setDefault("insider_name", "");
-    Session.setDefault("license", "");
-    Session.setDefault("author", "");
-    Session.setDefault("image_name", "");
+    Session.keys = {};
 
-});
-
-
-//TODO not nice
-Template.addEvent.onCreated(function () {
     const instance = this;
     instance.subscribe('events');
     instance.subscribe('images');
+
 });

@@ -1,6 +1,6 @@
 Template.eventlist.helpers({
     events: function () {
-        return Events.find();
+        return Events.find({},{$sort: {'begin._d': -1}});
     }
 });
 
@@ -12,15 +12,42 @@ Template.eventlist.onCreated(function () {
 Template.eventlistitem.events({
     'click [data-toggle]': function (e) {
         const _id = $(e.target).data('toggle');
-        Meteor.call('toggleEvent', _id, function(error){
-            if(!error){
+        Meteor.call('toggleEvent', _id, function (error) {
+            if (!error) {
                 //nice
 
 
-            }else{
+            } else {
                 alert("Error on toggle event");
             }
         });
 
+    }
+});
+
+Template.eventlistitem.helpers({
+    isDisplayedInApp: function (begin) {
+        max_diff = 13;
+        const diff = moment().diff(begin, 'days');
+        if (diff >= -max_diff && diff <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    isOutdatedEvent: function (begin) {
+        max_diff = 13;
+        const diff = moment().diff(begin, 'days');
+        if (diff > -max_diff) {
+            return true;
+        } else {
+            return false;
+        }
+    },
+    formatDate: function (begin) {
+        return moment(begin._d).format('DD.MM.YY');
+    },
+    timeAgo: function(begin){
+        return moment(begin._d).fromNow();
     }
 });
