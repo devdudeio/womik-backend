@@ -4,20 +4,21 @@ Meteor.methods({
                         title,
                         vendor,
                         type,
-                        image_id,
                         article,
                         fee,
                         age,
                         notice,
-                        optional,
                         vendor_name,
                         vendor_street,
+                        vendor_streetnr,
+                        vendor_zipcode,
                         vendor_city,
                         more_information,
                         insider_name,
                         license,
                         author,
-                        image_name) {
+                        image_name,
+                        image_id) {
 
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
@@ -26,17 +27,19 @@ Meteor.methods({
         } else {
 
             //check other params
-            const temp = [title,
+            const temp = [begin,
+                end,
+                title,
                 vendor,
                 type,
-                image_id,
                 article,
                 fee,
                 age,
                 notice,
-                optional,
                 vendor_name,
                 vendor_street,
+                vendor_streetnr,
+                vendor_zipcode,
                 vendor_city,
                 more_information,
                 insider_name,
@@ -48,30 +51,36 @@ Meteor.methods({
                 check(e, String);
             });
 
+
+            unix_begin = moment(begin, "DD.MM.YYYY HH:mm").unix()*1000;
+            unix_end = moment(end, "DD.MM.YYYY HH:mm").unix()*1000;
+
             Events.insert({
                 hidden: true,
-                createdAt: moment(),
-                editedAt: moment(),
+                createdAt: Date.now(),
+                editedAt: Date.now(),
                 createdBy: Meteor.userId(),
-                begin: moment(begin, "DD.MM.YYYY HH:mm"),
-                end: moment(end, "DD.MM.YYYY HH:mm"),
+                begin: unix_begin,
+                end: unix_end,
                 title: title,
                 vendor: vendor,
                 type: type,
-                image_id: image_id,
                 article: article,
                 fee: fee,
                 age: age,
                 notice: notice,
-                optional: optional,
                 vendor_name: vendor_name,
                 vendor_street: vendor_street,
+                vendor_streetnr: vendor_streetnr,
+                vendor_zipcode: vendor_zipcode,
                 vendor_city: vendor_city,
                 more_information: more_information,
                 insider_name: insider_name,
                 license: license,
                 author: author,
-                image_name: image_name
+                image_name: image_name,
+                image_id: image_id
+
             }, function (err) {
                 if (err) {
                     //er

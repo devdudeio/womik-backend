@@ -1,0 +1,140 @@
+<template name="editEvent">
+    <div class="ui form"><br>
+
+        <h2 class="ui header">Datum & Uhrzeit</h2>
+
+        <div class="two fields">
+            <div class="field">
+                <label>Beginn
+                </label>
+                <input id="begin" type="text" placeholder="27.03.2016 12:00">
+            </div>
+            <div class="field">
+                <label>Ende</label>
+                <input id="end" type="text" placeholder="27.03.2016 19:00">
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <h3>{{duration}}</h3>
+            </div>
+            <div class="field">
+                <h3>{{startsIn}}</h3>
+            </div>
+        </div>
+        <h2 class="ui header">Event</h2>
+        <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Here-Cheatsheet" target="_blank">[markdown
+            support]</a>
+
+        <div class="field">
+            <label>Überschrift
+            </label>
+            <input id="title" type="text" placeholder="z.B. Reif für die Insel">
+        </div>
+        <div class="field">
+            <label>Anbieter/Ort
+            </label>
+            <input id="vendor" type="text" placeholder="z.B. Zoo Dresden">
+        </div>
+        <div class="field">
+            <label>Veranstaltungsart</label>
+            <input id="type" type="text" placeholder="z.B. Ferienspiele">
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Artikel</label>
+                <textarea id="article" placeholder="Text des Artikels"></textarea>
+            </div>
+            <div class="field">
+                <label>Artikel Vorschau</label>
+
+                <div>{{#markdown}}{{article}}{{/markdown}}</div>
+            </div>
+        </div>
+        <div class="field">
+            <label>Eintritt/Preis</label>
+            <input id="fee" type="text" placeholder="z.B. 2,50€">
+        </div>
+        <div class="field">
+            <label>Alter</label>
+            <input id="age" type="text" placeholder="z.B. ab 9 Jahren oder 5-9 Jahre">
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>Bemerkung</label>
+                <textarea id="notice" placeholder="Bitte mitbringen: ..."></textarea>
+            </div>
+            <div class="field">
+                <label>Bemerkung Vorschau</label>
+
+                <div>{{#markdown}}{{notice}}{{/markdown}}</div>
+            </div>
+        </div>
+        <div class="two fields">
+            <div class="field">
+                <label>weitere Informationen</label>
+                <textarea id="more_information" placeholder="z.B. Links etc"></textarea>
+            </div>
+            <div class="field">
+                <label>weitere Informationen Vorschau</label>
+
+                <div>{{#markdown}}{{more_information}}{{/markdown}}</div>
+            </div>
+        </div>
+        <h2 class="ui header">Karte</h2>
+
+        <div class="five fields">
+            <div class="field">
+                <label>Anbieter</label>
+                <input id="vendor_name" type="text" placeholder="z.B. Zoo Dresden e.V.">
+            </div>
+            <div class="field">
+                <label>Straße</label>
+                <input id="vendor_street" type="text" placeholder="z.B. Musterstraße">
+            </div>
+            <div class="field">
+                <label>Nr</label>
+                <input id="vendor_streetnr" type="text" placeholder="z.B. 17a">
+            </div>
+            <div class="field">
+                <label>PLZ</label>
+                <input id="vendor_zipcode" type="text" placeholder="z.B. 01217">
+            </div>
+            <div class="field">
+                <label>Ort</label>
+                <input id="vendor_city" type="text" placeholder="z.B. Dresden">
+            </div>
+        </div>
+        <div class="two fields">
+
+            <div class="field">
+                <label>Tippgeber</label>
+                <input id="insider_name" type="text" placeholder="z.B. Dude Awesome aus Fancytown">
+            </div>
+            <div class="field">
+                <label>Redakteur</label>
+                <input id="author" type="text" placeholder="z.B. Resi">
+            </div>
+        </div>
+        <h2 class="ui header">Bild</h2>
+
+        <div class="three fields">
+            <div class="field">
+                <label>Fotolizenz</label>
+                <input id="license" type="text" placeholder="z.B. somename/ Fotalia.com">
+            </div>
+            <div class="field">
+                <label>Upload</label>
+                <input id="image_upload" type="file">
+                {{#with image}}
+                    <img src="{{this.url store='thumbs'}}">
+                {{/with}}
+            </div>
+            <div class="field">
+                <label>Bildername</label>
+                <input id="image_name" type="text" placeholder="z.B. #9876543">
+            </div>
+        </div>
+        <button class="ui button js-save">speichern</button>
+    </div>
+</template>

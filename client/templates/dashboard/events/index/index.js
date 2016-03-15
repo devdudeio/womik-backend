@@ -1,6 +1,6 @@
 Template.eventlist.helpers({
     events: function () {
-        return Events.find({},{$sort: {'begin._d': -1}});
+        return Events.find({},{sort: {begin: -1}});
     }
 });
 
@@ -45,9 +45,9 @@ Template.eventlistitem.helpers({
         }
     },
     formatDate: function (begin) {
-        return moment(begin._d).format('DD.MM.YY');
+        return moment(begin).format('DD.MM.YY');
     },
     timeAgo: function(begin){
-        return moment(begin._d).fromNow();
+        return moment(begin).fromNow();
     }
 });

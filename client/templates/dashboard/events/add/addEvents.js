@@ -45,27 +45,28 @@ Template.addEvent.events({
     },
     'click .js-save': function () {
 
-        const begin = $('#').val();
-        const end = $('#').val();
-        const title = $('#').val();
-        const vendor = $('#').val();
-        const type = $('#').val();
+        const begin = $('#begin').val();
+        const end = $('#end').val();
+
+
+        const title = $('#title').val();
+        const vendor = $('#vendor').val();
+        const type = $('#type').val();
+        const article = $('#article').val();
+        const fee = $('#fee').val();
+        const age = $('#age').val();
+        const notice = $('#notice').val();
+        const vendor_name = $('#vendor_name').val();
+        const vendor_street = $('#vendor_street').val();
+        const vendor_streetnr = $('#vendor_streetnr').val();
+        const vendor_zipcode = $('#vendor_zipcode').val();
+        const vendor_city = $('#vendor_city').val();
+        const more_information = $('#more_information').val();
+        const insider_name = $('#insider_name').val();
+        const license = $('#license').val();
+        const author = $('#author').val();
+        const image_name = $('#image_name').val();
         const image_id = Session.get("image_id");
-        const article = $('#').val();
-        const fee = $('#').val();
-        const age = $('#').val();
-        const notice = $('#').val();
-        const optional = $('#').val();
-        const vendor_name = $('#').val();
-        const vendor_street = $('#').val();
-        const vendor_streetnr = $('#').val();
-        const vendor_zipcode = $('#').val();
-        const vendor_city = $('#').val();
-        const more_information = $('#').val();
-        const insider_name = $('#').val();
-        const license = $('#').val();
-        const author = $('#').val();
-        const image_name = $('#').val();
 
         Meteor.call('addEvent',
             begin,
@@ -73,20 +74,22 @@ Template.addEvent.events({
             title,
             vendor,
             type,
-            image_id,
             article,
             fee,
             age,
             notice,
-            optional,
             vendor_name,
             vendor_street,
+            vendor_streetnr,
+            vendor_zipcode,
             vendor_city,
             more_information,
             insider_name,
             license,
             author,
-            image_name);
+            image_name,
+            image_id
+        );
         FlowRouter.go('events');
     }
 });
