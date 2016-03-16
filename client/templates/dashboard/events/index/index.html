@@ -42,6 +42,9 @@
             <td>
                 {{vendor}}
             </td>
+            <td>
+                <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
+            </td>
         </tr>
     {{else}}
         {{#if isOutdatedEvent begin}}
@@ -63,6 +66,9 @@
                 <td>
                     {{vendor}}
                 </td>
+                <td>
+                    <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
+                </td>
             </tr>
         {{else}}
             <tr style="background-color: rgba(255, 210, 42, 0.29);">
@@ -82,6 +88,9 @@
                 </td>
                 <td>
                     {{vendor}}
+                </td>
+                <td>
+                    <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
                 </td>
             </tr>
         {{/if}}

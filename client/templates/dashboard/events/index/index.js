@@ -22,6 +22,16 @@ Template.eventlistitem.events({
             }
         });
 
+    },
+    'click [data-delete]': function (e) {
+        const _id = $(e.target).data('delete');
+        Meteor.call('deleteEvent', _id, function (error) {
+            if (!error) {
+                //nice
+            } else {
+                alert("Error on delete event");
+            }
+        });
     }
 });
 
