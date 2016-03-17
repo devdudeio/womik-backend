@@ -45,6 +45,11 @@
             <td>
                 <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
             </td>
+            <td>
+                <a href="http://52.36.59.39/event/{{_id}}" target="_blank" class="ui button small blue">ios</a>
+                <a href="#" target="_blank"
+                   class="ui button small yellow">android</a>
+            </td>
         </tr>
     {{else}}
         {{#if isOutdatedEvent begin}}
@@ -69,6 +74,11 @@
                 <td>
                     <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
                 </td>
+                <td>
+                    <a href="http://52.36.59.39/event/{{_id}}" target="_blank" class="ui button small blue">ios</a>
+                    <a href="#" target="_blank"
+                       class="ui button small yellow">android</a>
+                </td>
             </tr>
         {{else}}
             <tr style="background-color: rgba(255, 210, 42, 0.29);">
@@ -91,6 +101,11 @@
                 </td>
                 <td>
                     <div class="ui button small pink" data-delete="{{_id}}">löschen</div>
+                </td>
+                <td>
+                    <a href="http://52.36.59.39/event/{{_id}}" target="_blank" class="ui button small blue">ios</a>
+                    <a href="#" target="_blank"
+                       class="ui button small yellow">android</a>
                 </td>
             </tr>
         {{/if}}
