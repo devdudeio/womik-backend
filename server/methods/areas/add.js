@@ -13,6 +13,9 @@ Meteor.methods({
             check(lat, Number);
             check(long, Number);
             check(alt, Number);
+
+            console.log("OK");
+
         }
     }
 });
