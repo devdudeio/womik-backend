@@ -7,7 +7,7 @@ Meteor.methods({
         } else {
             if (Events.findOne({_id: _id}).hidden) {
                 Events.update({_id: _id}, {$set: {hidden: false}});
-            }else{
+            } else {
                 Events.update({_id: _id}, {$set: {hidden: true}});
             }
         }
