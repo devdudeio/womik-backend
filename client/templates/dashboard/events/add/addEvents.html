@@ -105,6 +105,14 @@
                 <input id="vendor_city" type="text" placeholder="z.B. Dresden">
             </div>
         </div>
+        <div class="one field">
+            <select id="areas" name="areas" multiple="" class="ui fluid dropdown">
+                <option value="">Städte für Filter</option>
+                {{#each area in areas}}
+                    <option value="{{area._id}}">{{area.name}}</option>
+                {{/each}}
+            </select>
+        </div>
         <div class="two fields">
 
             <div class="field">
@@ -138,3 +146,5 @@
         <button class="ui button js-save">speichern</button>
     </div>
 </template>
+
+

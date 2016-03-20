@@ -27,18 +27,18 @@ Template.addEvent.events({
         });
         console.log("fired2");
     },
-    'input #article': function(){
-      const string = $('#article').val();
+    'input #article': function () {
+        const string = $('#article').val();
         Session.set('article', string);
     },
 
-    'input #notice': function(){
+    'input #notice': function () {
         const string = $('#notice').val();
         Session.set('notice', string);
 
     },
 
-    'input #more_information': function(){
+    'input #more_information': function () {
         const string = $('#more_information').val();
         Session.set('more_information', string);
 
@@ -67,6 +67,7 @@ Template.addEvent.events({
         const author = $('#author').val();
         const image_name = $('#image_name').val();
         const image_id = Session.get("image_id");
+        const areas = $('#areas').val();
 
         Meteor.call('addEvent',
             begin,
@@ -88,7 +89,8 @@ Template.addEvent.events({
             license,
             author,
             image_name,
-            image_id
+            image_id,
+            areas
         );
         FlowRouter.go('events');
     }
@@ -114,6 +116,9 @@ Template.addEvent.helpers({
     },
     more_information: function () {
         return Session.get("more_information");
+    },
+    areas: function () {
+        return Areas.find();
     }
 });
 
@@ -124,5 +129,13 @@ Template.addEvent.onCreated(function () {
     const instance = this;
     instance.subscribe('events');
     instance.subscribe('images');
+    instance.subscribe('areas');
 
 });
+
+Template.addEvent.rendered = function () {
+    $('.ui.dropdown')
+        .dropdown({
+            maxSelections: 1
+        });
+};
