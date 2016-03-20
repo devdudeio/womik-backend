@@ -18,7 +18,8 @@ Meteor.methods({
                         license,
                         author,
                         image_name,
-                        image_id) {
+                        image_id,
+                        areas) {
 
         // Make sure the user is logged in before inserting a task
         if (!Meteor.userId()) {
@@ -79,7 +80,8 @@ Meteor.methods({
                 license: license,
                 author: author,
                 image_name: image_name,
-                image_id: image_id
+                image_id: image_id,
+                areas: areas
 
             }, function (err) {
                 if (err) {
