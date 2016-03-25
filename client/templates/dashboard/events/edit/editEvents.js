@@ -1,17 +1,44 @@
-Template.addEvent.events({
-    'input #begin': function () {
-        const _begin = $('#begin').val();
-        const begin = moment(_begin, "DD.MM.YYYY HH:mm");
-        Session.set("startsIn", moment(begin).fromNow());
-        Session.set("begin", _begin);
+Template.editEvent.helpers({
+    event: function () {
+        return Events.findOne({_id: Session.get("event_id")});
     },
-    'input #end': function () {
-        const _end = $('#end').val();
-        const end = moment(_end, "DD-MM-YYYY HH:mm");
-        Session.set("end", _end);
-        const begin = moment($('#begin').val(), "DD-MM-YYYY HH:mm");
-        Session.set("duration", moment.duration(end.diff(begin, 'hours'), "hours").humanize());
+    image: function () {
+        if (Session.get("image_id") == null) {
+            const image_id = Events.findOne({_id: FlowRouter.current().params._id}).image_id;
+            if (image_id) {
+                Session.set("image_id", image_id);
+            }
+            return Images.findOne(image_id);
+        } else {
+            return Images.findOne(Session.get("image_id"));
+        }
     },
+    begin: function () {
+        const event = Events.findOne({_id: Session.get("event_id")});
+        return moment(event.begin).format("DD.MM.YYYY HH:mm");
+
+    },
+    end: function () {
+        const event = Events.findOne({_id: Session.get("event_id")});
+        return moment(event.end).format("DD.MM.YYYY HH:mm");
+    },
+    isSelected: function (a, b) {
+        //if event_areas is in areas then return true else false
+        b.forEach(function (item) {
+            if (item == a) {
+                console.log(a + " : " + item);
+                return true;
+            }
+        });
+        console.log("area nicht selected");
+        return false;
+    },
+    areas: function () {
+        return Areas.find();
+    }
+});
+
+Template.editEvent.events({
     'change #image_upload': function () {
         console.log("fired");
         //$('#image_upload').val("");
@@ -27,23 +54,9 @@ Template.addEvent.events({
         });
         console.log("fired2");
     },
-    'input #article': function(){
-      const string = $('#article').val();
-        Session.set('article', string);
-    },
-
-    'input #notice': function(){
-        const string = $('#notice').val();
-        Session.set('notice', string);
-
-    },
-
-    'input #more_information': function(){
-        const string = $('#more_information').val();
-        Session.set('more_information', string);
-
-    },
     'click .js-save': function () {
+        const event_id = Session.get("event_id");
+
 
         const begin = $('#begin').val();
         const end = $('#end').val();
@@ -67,8 +80,10 @@ Template.addEvent.events({
         const author = $('#author').val();
         const image_name = $('#image_name').val();
         const image_id = Session.get("image_id");
+        const areas = $('#areas').val();
 
-        Meteor.call('addEvent',
+        Meteor.call('editEvent',
+            event_id,
             begin,
             end,
             title,
@@ -83,46 +98,43 @@ Template.addEvent.events({
             vendor_streetnr,
             vendor_zipcode,
             vendor_city,
-            more_information,
+            more_information,               //is website link
             insider_name,
             license,
             author,
             image_name,
-            image_id
+            image_id,
+            areas
         );
         FlowRouter.go('events');
     }
 });
 
-Template.addEvent.helpers({
-    startsIn: function () {
-        return "Startet in " + Session.get("startsIn");
-    },
-    duration: function () {
-        return "Dauert ca. " + Session.get("duration");
-    },
-    image: function () {
-        if (Session.get("image_id") != null) {
-            return Images.findOne(Session.get("image_id"));
-        }
-    },
-    article: function () {
-        return Session.get("article");
-    },
-    notice: function () {
-        return Session.get("notice");
-    },
-    more_information: function () {
-        return Session.get("more_information");
-    }
-});
-
-
-Template.addEvent.onCreated(function () {
-    Session.keys = {};
+Template.editEvent.onCreated(function () {
 
     const instance = this;
     instance.subscribe('events');
     instance.subscribe('images');
-
+    instance.subscribe('areas');
+    Session.set("image_id", null);
+    Session.set("event_id", FlowRouter.current().params._id);
 });
+
+Template.editEvent.rendered = function () {
+
+    const areas = Events.findOne({_id:Session.get("event_id")}).areas;
+
+    let defaults = function(){
+        $('.ui.dropdown')
+            .dropdown('set selected', areas);
+    };
+
+
+    $('.ui.dropdown')
+        .dropdown({
+            maxSelections: 1
+        });
+
+    setTimeout(defaults,500);
+
+};

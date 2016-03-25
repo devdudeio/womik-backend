@@ -7,11 +7,11 @@
             <div class="field">
                 <label>Beginn
                 </label>
-                <input id="begin" type="text" placeholder="27.03.2016 12:00">
+                <input id="begin" type="text" placeholder="27.03.2016 12:00" value="{{begin}}">
             </div>
             <div class="field">
                 <label>Ende</label>
-                <input id="end" type="text" placeholder="27.03.2016 19:00">
+                <input id="end" type="text" placeholder="27.03.2016 19:00" value="{{end}}">
             </div>
         </div>
         <div class="two fields">
@@ -29,91 +29,93 @@
         <div class="field">
             <label>Überschrift
             </label>
-            <input id="title" type="text" placeholder="z.B. Reif für die Insel">
+            <input id="title" type="text" placeholder="z.B. Reif für die Insel" value="{{event.title}}">
         </div>
         <div class="field">
             <label>Anbieter/Ort
             </label>
-            <input id="vendor" type="text" placeholder="z.B. Zoo Dresden">
+            <input id="vendor" type="text" placeholder="z.B. Zoo Dresden" value="{{event.vendor}}">
         </div>
         <div class="field">
             <label>Veranstaltungsart</label>
-            <input id="type" type="text" placeholder="z.B. Ferienspiele">
+            <input id="type" type="text" placeholder="z.B. Ferienspiele" value="{{event.type}}">
         </div>
         <div class="two fields">
             <div class="field">
                 <label>Artikel</label>
-                <textarea id="article" placeholder="Text des Artikels"></textarea>
+                <textarea id="article" placeholder="Text des Artikels">{{event.article}}</textarea>
             </div>
             <div class="field">
                 <label>Artikel Vorschau</label>
 
-                <div>{{#markdown}}{{article}}{{/markdown}}</div>
+                <div>{{#markdown}}{{event.article}}{{/markdown}}</div>
             </div>
         </div>
         <div class="field">
             <label>Eintritt/Preis</label>
-            <input id="fee" type="text" placeholder="z.B. 2,50€">
+            <input id="fee" type="text" placeholder="z.B. 2,50€" value="{{event.fee}}">
         </div>
         <div class="field">
             <label>Alter</label>
-            <input id="age" type="text" placeholder="z.B. ab 9 Jahren oder 5-9 Jahre">
+            <input id="age" type="text" placeholder="z.B. ab 9 Jahren oder 5-9 Jahre" value="{{event.age}}">
         </div>
         <div class="two fields">
             <div class="field">
                 <label>Bemerkung</label>
-                <textarea id="notice" placeholder="Bitte mitbringen: ..."></textarea>
+                <textarea id="notice" placeholder="Bitte mitbringen: ...">{{event.notice}}</textarea>
             </div>
             <div class="field">
                 <label>Bemerkung Vorschau</label>
 
-                <div>{{#markdown}}{{notice}}{{/markdown}}</div>
+                <div>{{#markdown}}{{event.notice}}{{/markdown}}</div>
             </div>
         </div>
-        <div class="two fields">
-            <div class="field">
-                <label>weitere Informationen</label>
-                <textarea id="more_information" placeholder="z.B. Links etc"></textarea>
-            </div>
-            <div class="field">
-                <label>weitere Informationen Vorschau</label>
-
-                <div>{{#markdown}}{{more_information}}{{/markdown}}</div>
-            </div>
+        <div class="field">
+            <label>Anbieter Website URL</label>
+            <input id="more_information" placeholder="http://" value="{{event.more_information}}">
         </div>
         <h2 class="ui header">Karte</h2>
 
         <div class="five fields">
             <div class="field">
                 <label>Anbieter</label>
-                <input id="vendor_name" type="text" placeholder="z.B. Zoo Dresden e.V.">
+                <input id="vendor_name" type="text" placeholder="z.B. Zoo Dresden e.V." value="{{event.vendor_name}}">
             </div>
             <div class="field">
                 <label>Straße</label>
-                <input id="vendor_street" type="text" placeholder="z.B. Musterstraße">
+                <input id="vendor_street" type="text" placeholder="z.B. Musterstraße" value="{{event.vendor_street}}">
             </div>
             <div class="field">
                 <label>Nr</label>
-                <input id="vendor_streetnr" type="text" placeholder="z.B. 17a">
+                <input id="vendor_streetnr" type="text" placeholder="z.B. 17a" value="{{event.vendor_streetnr}}">
             </div>
             <div class="field">
                 <label>PLZ</label>
-                <input id="vendor_zipcode" type="text" placeholder="z.B. 01217">
+                <input id="vendor_zipcode" type="text" placeholder="z.B. 01217" value="{{event.vendor_zipcode}}">
             </div>
             <div class="field">
                 <label>Ort</label>
-                <input id="vendor_city" type="text" placeholder="z.B. Dresden">
+                <input id="vendor_city" type="text" placeholder="z.B. Dresden" value="{{event.vendor_city}}">
             </div>
+        </div>
+        <div class="one field">
+            <select id="areas" name="areas" multiple="" class="ui fluid dropdown" data-value="{{event.areas}}">
+                <option value="">Städte für Filter</option>
+                {{#each area in areas}}
+                        <option value="{{area._id}}">{{area.name}}</option>
+                {{/each}}
+            </select>
         </div>
         <div class="two fields">
 
             <div class="field">
                 <label>Tippgeber</label>
-                <input id="insider_name" type="text" placeholder="z.B. Dude Awesome aus Fancytown">
+                <input id="insider_name" type="text" placeholder="z.B. Dude Awesome aus Fancytown"
+                       value="{{event.insider_name}}">
             </div>
             <div class="field">
                 <label>Redakteur</label>
-                <input id="author" type="text" placeholder="z.B. Resi">
+                <input id="author" type="text" placeholder="z.B. Resi" value="{{event.author}}">
             </div>
         </div>
         <h2 class="ui header">Bild</h2>
@@ -121,20 +123,22 @@
         <div class="three fields">
             <div class="field">
                 <label>Fotolizenz</label>
-                <input id="license" type="text" placeholder="z.B. somename/ Fotalia.com">
+                <input id="license" type="text" placeholder="z.B. somename/ Fotalia.com" value="{{event.license}}">
             </div>
             <div class="field">
                 <label>Upload</label>
                 <input id="image_upload" type="file">
                 {{#with image}}
-                    <img src="{{this.url store='thumbs'}}">
+                    <img src="{{this.url store='thumbs'}}"><br>(thumb)
                 {{/with}}
             </div>
             <div class="field">
                 <label>Bildername</label>
-                <input id="image_name" type="text" placeholder="z.B. #9876543">
+                <input id="image_name" type="text" placeholder="z.B. #9876543" value="{{event.image_name}}">
             </div>
         </div>
         <button class="ui button js-save">speichern</button>
     </div>
 </template>
+
+

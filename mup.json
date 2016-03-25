@@ -29,7 +29,7 @@
   "appName": "meteor",
 
   // Location of app (local directory)
-  "app": "/Users/robertlech/WebstormProjects/womik-backend",
+  "app": "/Users/womik/WebstormProjects/womik-backend",
 
   // Configure environment
   "env": {

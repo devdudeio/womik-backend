@@ -7,9 +7,9 @@ Template.addEvent.events({
     },
     'input #end': function () {
         const _end = $('#end').val();
-        const end = moment(_end, "DD-MM-YYYY HH:mm");
+        const end = moment(_end, "DD.MM.YYYY HH:mm");
         Session.set("end", _end);
-        const begin = moment($('#begin').val(), "DD-MM-YYYY HH:mm");
+        const begin = moment($('#begin').val(), "DD.MM.YYYY HH:mm");
         Session.set("duration", moment.duration(end.diff(begin, 'hours'), "hours").humanize());
     },
     'change #image_upload': function () {
@@ -35,12 +35,6 @@ Template.addEvent.events({
     'input #notice': function () {
         const string = $('#notice').val();
         Session.set('notice', string);
-
-    },
-
-    'input #more_information': function () {
-        const string = $('#more_information').val();
-        Session.set('more_information', string);
 
     },
     'click .js-save': function () {
@@ -84,7 +78,7 @@ Template.addEvent.events({
             vendor_streetnr,
             vendor_zipcode,
             vendor_city,
-            more_information,
+            more_information,               //is website link
             insider_name,
             license,
             author,
@@ -113,9 +107,6 @@ Template.addEvent.helpers({
     },
     notice: function () {
         return Session.get("notice");
-    },
-    more_information: function () {
-        return Session.get("more_information");
     },
     areas: function () {
         return Areas.find();

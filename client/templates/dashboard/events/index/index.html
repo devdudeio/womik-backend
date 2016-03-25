@@ -26,7 +26,7 @@
     {{#if isDisplayedInApp begin}}
         <tr style="background-color: rgba(51, 255, 77, 0.05);">
             <td>
-                {{title}}
+                <a href="{{pathFor route='editEvent' _id=_id}}"><div class="ui button small icon"><i class="icon edit"></i></div></a> {{title}}
             </td>
             <td>{{author}}</td>
             <td>
@@ -55,7 +55,7 @@
         {{#if isOutdatedEvent begin}}
             <tr style="background-color: rgba(255, 22, 8, 0.06);">
                 <td>
-                    {{title}}
+                    <a href="{{pathFor route='editEvent' _id=_id}}"><div class="ui button small icon"><i class="icon edit"></i></div></a> {{title}}
                 </td>
                 <td>{{author}}</td>
                 <td>
@@ -83,7 +83,7 @@
         {{else}}
             <tr style="background-color: rgba(255, 210, 42, 0.29);">
                 <td>
-                    {{title}}
+                    <a href="{{pathFor route='editEvent' _id=_id}}"><div class="ui button small icon"><i class="icon edit"></i></div></a> {{title}}
                 </td>
                 <td>{{author}}</td>
                 <td>
