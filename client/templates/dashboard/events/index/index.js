@@ -55,7 +55,7 @@ Template.eventlistitem.helpers({
         }
     },
     formatDate: function (begin) {
-        return moment(begin).format('DD.MM.YY');
+        return moment(begin).format('DD.MM.YY H:mm');
     },
     timeAgo: function(begin){
         return moment(begin).fromNow();

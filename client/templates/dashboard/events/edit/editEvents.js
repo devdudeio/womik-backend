@@ -15,12 +15,12 @@ Template.editEvent.helpers({
     },
     begin: function () {
         const event = Events.findOne({_id: Session.get("event_id")});
-        return moment(event.begin).subtract(1, 'hours').format("DD.MM.YYYY HH:mm");
+        return moment(event.begin).format("DD.MM.YYYY HH:mm");
 
     },
     end: function () {
         const event = Events.findOne({_id: Session.get("event_id")});
-        return moment(event.end).subtract(1, 'hours').format("DD.MM.YYYY HH:mm");
+        return moment(event.end).format("DD.MM.YYYY HH:mm");
     },
     isSelected: function (a, b) {
         //if event_areas is in areas then return true else false

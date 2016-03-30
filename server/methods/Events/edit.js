@@ -54,8 +54,8 @@ Meteor.methods({
             });
 
 
-            unix_begin = moment(begin, "DD.MM.YYYY HH:mm").unix() * 1000;
-            unix_end = moment(end, "DD.MM.YYYY HH:mm").unix() * 1000;
+            unix_begin = moment(begin, "DD.MM.YYYY HH:mm").subtract('hours', 2).unix() * 1000;
+            unix_end = moment(end, "DD.MM.YYYY HH:mm").subtract('hours', 2).unix() * 1000;
 
             Events.update({_id: event_id}, {
                 hidden: true,
