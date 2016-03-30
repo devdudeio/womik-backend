@@ -32,6 +32,16 @@ Template.eventlistitem.events({
                 alert("Error on delete event");
             }
         });
+    },
+    'dblclick [data-copy]': function (e) {
+        const _id = $(e.target).data('copy');
+        Meteor.call('copyEvent', _id, function (error) {
+            if (!error) {
+                alert("Event wurde kopiert");
+            } else {
+                alert("Error on copy event");
+            }
+        });
     }
 });
 
